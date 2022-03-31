@@ -3,7 +3,7 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.6.
 
 ## Description
-Storybook displayng your components with dynamic lasy modules loading
+Storybook lib displayng your components with dynamic lasy modules loading
 
 ## Configuartion
 

@@ -3,11 +3,15 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { StoryBookModule } from './storybook/core/story-book/story-book.module';
-import { IStoryConfig } from './storybook/core/types/config';
+import { NgxStorybookModule, IStoryConfig } from 'ngx-storybook';
 
 const storyConfig: IStoryConfig = {
-  modules: []
+  modules: [
+    {
+      components: [],
+      module: './src/'
+    }
+  ]
 }
 
 @NgModule({
@@ -17,7 +21,7 @@ const storyConfig: IStoryConfig = {
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoryBookModule.forRoot(storyConfig)
+    NgxStorybookModule.forRoot(storyConfig)
   ],
   providers: [],
   bootstrap: [AppComponent]
