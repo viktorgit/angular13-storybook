@@ -9,7 +9,15 @@ const storyConfig: IStoryConfig = {
   modules: [
     {
       components: [],
-      module: './src/'
+      module: 'src/app/test-modules/test-module-two-components/test-module-two-components.module#TestTwoComponentModule'
+    },
+    {
+      components: [],
+      module: 'src/app/test-modules/test-module-two-components/test-module-two-components.module'
+    },
+    {
+      components: [],
+      module: './src/app/test-modules/test-module-one-component/test-module-one-component.module'
     }
   ]
 }

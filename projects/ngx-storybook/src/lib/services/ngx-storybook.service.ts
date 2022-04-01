@@ -1,19 +1,25 @@
-import { Inject, Injectable } from '@angular/core';
+import { Inject, Injectable, Injector } from '@angular/core';
 import { Router } from '@angular/router';
 import { delay, Observable, of, tap } from 'rxjs';
 import { IStoryConfig } from '../types/config';
 import { MODULE_LOADER } from './module-loader-token';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class NgxStorybookService {
   private lazyMap: Map<string, Promise<unknown>> = new Map();
 
   constructor(
     @Inject(MODULE_LOADER) private config: IStoryConfig,
+    private injector: Injector,
     private router: Router
   ) {
-    console.log('load modules and components')
-    console.log(this.config)
+    this.config.modules.forEach(m => {
+      this.loadLazyModules(m.module).subscribe(r => {
+        console.log(r);
+      })
+    });
   }
 
   getLazyModule(key: string): Promise<unknown> {
@@ -41,7 +47,6 @@ export class NgxStorybookService {
       });
       this.router.resetConfig(config);
       this.router.navigate([url ? url : 'lazy']);
-      // this.routes = this.router.config;
     });
   }
 }
